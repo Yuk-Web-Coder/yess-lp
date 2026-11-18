@@ -1,0 +1,84 @@
+:root {
+  /* Palette: derived from YESS packaging (oat cream, espresso ink, basil, carrot, beet, tomato, logo blue) */
+  --color-paper: oklch(98.2% 0.008 82);
+  --color-paper-2: oklch(95.4% 0.012 78);
+  --color-paper-3: oklch(92.6% 0.016 76);
+  --color-paper-elevated: oklch(99.4% 0.004 85);
+  --color-ink: oklch(21% 0.022 52);
+  --color-ink-2: oklch(38% 0.020 55);
+  --color-muted: oklch(54% 0.018 65);
+
+  --color-accent: oklch(43% 0.105 142);
+  --color-accent-hover: oklch(36% 0.105 142);
+  --color-accent-soft: oklch(93% 0.028 142);
+  --color-accent-ink: oklch(98.5% 0.005 90);
+
+  --color-yess-blue: oklch(66% 0.080 232);
+  --color-yess-blue-soft: oklch(93% 0.025 232);
+  --color-carrot: oklch(58% 0.160 40);
+  --color-carrot-ink: oklch(43% 0.145 38);
+  --color-carrot-soft: oklch(94% 0.032 45);
+  --color-carrot-wash: oklch(90% 0.050 48);
+  --color-beet: oklch(38% 0.130 355);
+  --color-beet-soft: oklch(92% 0.030 355);
+  --color-tomato: oklch(49% 0.165 24);
+  --color-tomato-soft: oklch(94% 0.028 24);
+  --color-basil: oklch(52% 0.130 142);
+  --color-basil-ink: oklch(40% 0.110 145);
+  --color-basil-wash: oklch(91% 0.045 140);
+  --color-backdrop: oklch(20% 0.02 55 / 0.6);
+
+  --color-rule: oklch(88% 0.014 78);
+  --color-rule-strong: oklch(76% 0.018 72);
+  --color-focus: oklch(48% 0.120 232);
+
+  --surface-dark: oklch(20% 0.020 55);
+  --surface-dark-2: oklch(26% 0.024 60);
+  --ink-on-dark: oklch(97% 0.006 85);
+  --ink-on-dark-muted: oklch(78% 0.012 80);
+  --rule-on-dark: oklch(36% 0.020 60);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.75rem, 3vw, 2.375rem);
+  --text-3xl: clamp(2.25rem, 4.6vw, 3.5rem);
+  --text-hero: clamp(2.65rem, 6.8vw, 5.5rem);
+
+  /* 4px Spacing Scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 72px;
+  --space-4xl: 96px;
+  --space-section: clamp(64px, 9vw, 120px);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 12px 32px -12px oklch(21% 0.022 52 / 0.10);
+  --shadow-modal: 0 24px 64px -16px oklch(21% 0.022 52 / 0.24);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur-base: 260ms;
+  --dur-slow: 600ms;
+
+  /* Layout */
+  --container-max: 1180px;
+  --gutter: clamp(16px, 4vw, 32px);
+}
