@@ -1,8 +1,6 @@
 (() => {
   'use strict';
 
-  const STORAGE_KEY = 'yess_smoke_test_v1';
-
   // 公開時にGoogle Apps Script / Formspree等のPOST先URLを設定すると自動送信されます
   const TRACKING_CONFIG = {
     endpointUrl: 'https://script.google.com/macros/s/AKfycbzE7_hvgNOewr7lNoITkIGf0fDg261RQZ8IoaJgCseKEIBQi6QxBpBXhs26L5ZBUvf9IA/exec',
@@ -42,30 +40,6 @@
     };
   }
 
-  function loadLog() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch (_) {
-      // Ignore storage errors
-    }
-    return {
-      views: 0,
-      selects: 0,
-      fakePurchases: 0,
-      leads: 0,
-      events: []
-    };
-  }
-
-  function saveLog(log) {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(log));
-    } catch (_) {
-      // Ignore storage errors
-    }
-  }
-
   function getSelectionCategory() {
     if (state.carrotQty > 0 && state.tomatoQty > 0) return 'assort';
     if (state.carrotQty > 0) return 'carrot';
@@ -74,27 +48,7 @@
   }
 
   function trackEvent(type, payload = {}) {
-    const log = loadLog();
-    if (type === 'view') log.views += 1;
-    if (type === 'select') log.selects += 1;
-    if (type === 'fake_purchase') log.fakePurchases += 1;
-    if (type === 'waitlist_lead') log.leads += 1;
-
     const totalBags = state.carrotQty + state.tomatoQty;
-
-    log.events.push({
-      timestamp: new Date().toISOString(),
-      type,
-      flavor: getSelectionCategory(),
-      carrotQty: state.carrotQty,
-      tomatoQty: state.tomatoQty,
-      totalBags,
-      ...getParams(),
-      ...payload
-    });
-
-    saveLog(log);
-    renderAnalytics();
 
     if (TRACKING_CONFIG.enableGtag && typeof window.gtag === 'function') {
       const gaEventMap = {
@@ -235,11 +189,6 @@
   const modalFormError = document.getElementById('modalFormError');
   const waitlistSubmitBtn = document.getElementById('waitlistSubmitBtn');
   const modalCompleteBox = document.getElementById('modalCompleteBox');
-
-  const toggleAnalyticsBtn = document.getElementById('toggleAnalyticsBtn');
-  const analyticsDrawer = document.getElementById('analyticsDrawer');
-  const exportCsvBtn = document.getElementById('exportCsvBtn');
-  const resetStatsBtn = document.getElementById('resetStatsBtn');
 
   const privacyModal = document.getElementById('privacyModal');
   const openPrivacyBtn = document.getElementById('openPrivacyBtn');
@@ -499,63 +448,8 @@
     modalCompleteBox.classList.add('is-visible');
   });
 
-  // Analytics drawer
-  function renderAnalytics() {
-    const log = loadLog();
-    document.getElementById('statViews').textContent = String(log.views);
-    document.getElementById('statSelects').textContent = String(log.selects);
-    document.getElementById('statFakePurchases').textContent = String(log.fakePurchases);
-    document.getElementById('statLeads').textContent = String(log.leads);
-
-    const buyIntentRate = log.views > 0 ? ((log.fakePurchases / log.views) * 100).toFixed(1) : '0.0';
-    const leadRate = log.fakePurchases > 0 ? ((log.leads / log.fakePurchases) * 100).toFixed(1) : '0.0';
-
-    const flavorCounts = { assort: 0, carrot: 0, tomato: 0 };
-    let totalCarrotOrdered = 0;
-    let totalTomatoOrdered = 0;
-    let pouch3dCount = 0;
-    log.events.forEach((ev) => {
-      if (ev.type === 'pouch_3d') pouch3dCount += 1;
-      if (ev.type === 'fake_purchase') {
-        if (flavorCounts[ev.flavor] !== undefined) flavorCounts[ev.flavor] += 1;
-        totalCarrotOrdered += Number(ev.carrotQty || 0);
-        totalTomatoOrdered += Number(ev.tomatoQty || 0);
-      }
-    });
-
-    document.getElementById('analyticsBreakdown').textContent =
-      `仮購入率 (Buy Intent / View): ${buyIntentRate}% ｜ 案内登録率 (Lead / Buy Intent): ${leadRate}% ｜ 3D操作: ${pouch3dCount}回 ｜ 注文構成: アソート(${flavorCounts.assort}) / キャロット単品(${flavorCounts.carrot}) / トマト単品(${flavorCounts.tomato}) ｜ 合計袋数: キャロット${totalCarrotOrdered}袋・トマト${totalTomatoOrdered}袋`;
-  }
-
   document.addEventListener('yess:pouch-interact', (e) => {
     trackEvent('pouch_3d', { source: e.detail?.action || 'unknown' });
-  });
-
-  toggleAnalyticsBtn.addEventListener('click', () => {
-    const isOpen = analyticsDrawer.classList.toggle('is-open');
-    analyticsDrawer.setAttribute('aria-hidden', String(!isOpen));
-    renderAnalytics();
-  });
-
-  exportCsvBtn.addEventListener('click', () => {
-    const log = loadLog();
-    const headers = ['timestamp', 'type', 'flavor', 'carrotQty', 'tomatoQty', 'totalBags', 'utm_source', 'utm_campaign', 'habit', 'reason'];
-    const rows = log.events.map((ev) =>
-      headers.map((h) => `"${String(ev[h] ?? '').replace(/"/g, '""')}"`).join(',')
-    );
-    const csv = [headers.join(','), ...rows].join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'yess-smoke-test-log.csv';
-    link.click();
-    URL.revokeObjectURL(url);
-  });
-
-  resetStatsBtn.addEventListener('click', () => {
-    localStorage.removeItem(STORAGE_KEY);
-    renderAnalytics();
   });
 
   // Init

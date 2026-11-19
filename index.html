@@ -467,7 +467,7 @@
     </div>
   </div>
 
-  <!-- Footer + Reproducible Smoke Test Analytics Drawer -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
@@ -495,42 +495,9 @@
           </dl>
         </div>
         <div class="footer-actions">
-          <button type="button" class="analytics-toggle-btn" id="openPrivacyBtn">
+          <button type="button" class="footer-policy-btn" id="openPrivacyBtn">
             プライバシーポリシー
           </button>
-          <button type="button" class="analytics-toggle-btn" id="toggleAnalyticsBtn">
-            仮購入スモークテスト計測ログ（検証者用）
-          </button>
-        </div>
-      </div>
-
-      <div class="analytics-drawer" id="analyticsDrawer" aria-hidden="true">
-        <h3>4段階 仮購入ファネル計測（ローカル検証ログ）</h3>
-        <p class="analytics-note">
-          LP上の購買行動（View、Select、Fake Purchase、Waitlist Lead）と3Dパッケージの操作をブラウザ内で記録しています。
-        </p>
-        <div class="funnel-grid">
-          <div class="funnel-stat">
-            <span class="funnel-stat-num" id="statViews">0</span>
-            <span>1. LP到達 (View)</span>
-          </div>
-          <div class="funnel-stat">
-            <span class="funnel-stat-num" id="statSelects">0</span>
-            <span>2. SKU変更 (Select)</span>
-          </div>
-          <div class="funnel-stat">
-            <span class="funnel-stat-num" id="statFakePurchases">0</span>
-            <span>3. 仮購入押下 (Buy Intent)</span>
-          </div>
-          <div class="funnel-stat">
-            <span class="funnel-stat-num" id="statLeads">0</span>
-            <span>4. 案内登録 (Lead)</span>
-          </div>
-        </div>
-        <div id="analyticsBreakdown" class="analytics-note"></div>
-        <div class="analytics-actions">
-          <button type="button" class="btn-small" id="exportCsvBtn">計測ログをCSVダウンロード</button>
-          <button type="button" class="btn-small" id="resetStatsBtn">ログをリセット</button>
         </div>
       </div>
     </div>
