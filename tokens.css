@@ -34,6 +34,7 @@
 
   --surface-dark: oklch(20% 0.020 55);
   --surface-dark-2: oklch(26% 0.024 60);
+  --surface-dark-tint: oklch(100% 0 0 / 0.06);
   --ink-on-dark: oklch(97% 0.006 85);
   --ink-on-dark-muted: oklch(78% 0.012 80);
   --rule-on-dark: oklch(36% 0.020 60);

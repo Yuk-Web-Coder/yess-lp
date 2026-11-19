@@ -474,6 +474,13 @@ button[aria-disabled="true"] {
   color: var(--color-ink);
 }
 
+.lead-highlight {
+  background: linear-gradient(transparent 55%, var(--color-carrot-soft) 55%);
+  color: var(--color-ink);
+  font-weight: 800;
+  padding: 0 var(--space-2xs);
+}
+
 /* ==========================================================================
    DILEMMA (open layout, no boxes)
    ========================================================================== */
@@ -497,15 +504,44 @@ button[aria-disabled="true"] {
 .dilemma-item {
   padding-top: var(--space-lg);
   border-top: 2px solid var(--color-ink);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.dilemma-item:hover {
+  transform: translateY(-4px);
 }
 
 .dilemma-num {
-  display: block;
+  display: inline-block;
   font-size: var(--text-3xl);
   font-weight: 900;
   line-height: 1;
   color: var(--color-rule-strong);
   font-variant-numeric: tabular-nums;
+  transition: color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+
+.dilemma-item:hover .dilemma-num {
+  color: var(--color-carrot);
+  transform: scale(1.08) translateX(2px);
+}
+
+.js .dilemma-item.is-revealed .dilemma-num {
+  animation: numPop 0.6s var(--ease-out) both;
+}
+
+@keyframes numPop {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.9);
+  }
+  60% {
+    transform: translateY(-2px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .dilemma-name {
@@ -565,6 +601,17 @@ button[aria-disabled="true"] {
   border-top: 1px solid var(--rule-on-dark);
   font-size: var(--text-sm);
   color: var(--ink-on-dark-muted);
+}
+
+.answer-points li.point-featured {
+  border-top-color: var(--color-yess-blue);
+  background: linear-gradient(90deg, var(--surface-dark-tint) 0%, transparent 100%);
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--color-yess-blue);
+}
+
+.answer-points li.point-featured strong {
+  color: var(--color-yess-blue);
 }
 
 .answer-points strong {
