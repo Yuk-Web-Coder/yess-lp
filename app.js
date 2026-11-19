@@ -334,7 +334,12 @@
     state.modalOpenedAt = Date.now();
     interceptModal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
-    waitlistEmail.focus();
+    const panel = interceptModal.querySelector('.modal-panel');
+    if (panel) panel.scrollTop = 0;
+    const isTouchOrMobile = window.matchMedia('(max-width: 36rem), (pointer: coarse)').matches;
+    if (!isTouchOrMobile) {
+      waitlistEmail.focus();
+    }
   }
 
   function closeModal() {

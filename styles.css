@@ -1135,6 +1135,7 @@ button[aria-disabled="true"] {
   max-width: 540px;
   max-height: 90dvh;
   overflow-y: auto;
+  overscroll-behavior: contain;
   background-color: var(--color-paper-elevated);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
@@ -1189,6 +1190,10 @@ button[aria-disabled="true"] {
   gap: var(--space-md);
 }
 
+.modal-form .btn-primary {
+  width: 100%;
+}
+
 .field-label {
   display: block;
   font-size: var(--text-xs);
@@ -1199,12 +1204,18 @@ button[aria-disabled="true"] {
 
 .text-input {
   width: 100%;
-  min-height: 46px;
+  min-height: 48px;
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--color-rule-strong);
-  background-color: var(--color-paper);
+  border: 1.5px solid var(--color-rule-strong);
+  background-color: var(--color-paper-elevated);
   font-size: var(--text-md);
+  color: var(--color-ink);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.text-input:focus {
+  border-color: var(--color-accent);
 }
 
 .reason-chips {
@@ -1503,6 +1514,50 @@ button[aria-disabled="true"] {
   .qty-controls {
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-panel {
+    max-width: none;
+    max-height: 92dvh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: var(--space-lg) var(--space-md) calc(var(--space-lg) + env(safe-area-inset-bottom));
+  }
+
+  .modal-close-btn {
+    top: var(--space-sm);
+    right: var(--space-sm);
+  }
+
+  .modal-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-xs);
+    padding-right: var(--space-2xl);
+  }
+
+  .modal-desc {
+    font-size: var(--text-xs);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .modal-chosen-box {
+    padding: var(--space-sm) var(--space-md);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-xs);
+  }
+
+  .modal-form {
+    gap: var(--space-sm);
+  }
+
+  .reason-chip {
+    min-height: 36px;
+    padding: var(--space-2xs) var(--space-sm);
   }
 }
 

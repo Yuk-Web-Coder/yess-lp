@@ -385,6 +385,17 @@
 
       <form class="modal-form" id="waitlistForm" novalidate>
         <div>
+          <label for="waitlistEmail" class="field-label">受け取り用メールアドレス（必須）</label>
+          <input type="email" id="waitlistEmail" class="text-input" placeholder="name@example.com" maxlength="254" autocomplete="email" inputmode="email" required>
+          <p class="form-error" id="modalFormError" aria-live="polite"></p>
+        </div>
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="waitlistWebsite">Website</label>
+          <input type="text" id="waitlistWebsite" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div>
           <span class="field-label">当てはまる普段の習慣（任意）</span>
           <div class="reason-chips" id="habitChips">
             <button type="button" class="reason-chip" data-habit="間食をよく食べる">間食をよく食べる</button>
@@ -401,17 +412,6 @@
             <button type="button" class="reason-chip" data-reason="サラダを買う手間を省きたい">サラダを買う手間を省きたい</button>
             <button type="button" class="reason-chip" data-reason="デスクで片手で食べられそう">デスクで片手で食べられそう</button>
           </div>
-        </div>
-
-        <div>
-          <label for="waitlistEmail" class="field-label">本品アナウンス・購入意思確認の受け取り用メールアドレス</label>
-          <input type="email" id="waitlistEmail" class="text-input" placeholder="name@example.com" maxlength="254" autocomplete="email" required>
-          <p class="form-error" id="modalFormError" aria-live="polite"></p>
-        </div>
-
-        <div class="hp-field" aria-hidden="true">
-          <label for="waitlistWebsite">Website</label>
-          <input type="text" id="waitlistWebsite" name="website" tabindex="-1" autocomplete="off">
         </div>
 
         <p class="privacy-note">
