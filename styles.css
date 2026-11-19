@@ -53,6 +53,12 @@
   color: var(--color-yess-blue);
 }
 
+.brand-logo {
+  height: var(--space-lg);
+  width: auto;
+  display: block;
+}
+
 .header-nav {
   display: flex;
   align-items: center;
@@ -1338,6 +1344,13 @@ button[aria-disabled="true"] {
   font-size: var(--text-md);
   font-weight: 800;
   color: var(--color-yess-blue);
+  margin-bottom: var(--space-xs);
+}
+
+.footer-logo {
+  height: 22px;
+  width: auto;
+  display: block;
 }
 
 .footer-operator {

@@ -46,7 +46,7 @@ function buildPouchGeometry(width, height) {
   return geometry;
 }
 
-function makeBackTexture(info) {
+function makeBackTexture(info, logoImg) {
   const c = document.createElement('canvas');
   c.width = 512;
   c.height = 1160;
@@ -93,9 +93,15 @@ function makeBackTexture(info) {
   ctx.fillRect(px, py, pw, 10);
 
   ctx.textAlign = 'center';
-  ctx.fillStyle = 'rgb(140, 176, 206)';
-  ctx.font = '300 104px "Plus Jakarta Sans", "Noto Sans JP", sans-serif';
-  ctx.fillText('YESS', c.width / 2, py + 140);
+  if (logoImg) {
+    const lw = 260;
+    const lh = Math.round(lw * (logoImg.naturalHeight / logoImg.naturalWidth));
+    ctx.drawImage(logoImg, (c.width - lw) / 2, py + 72, lw, lh);
+  } else {
+    ctx.fillStyle = 'rgb(140, 176, 206)';
+    ctx.font = '300 104px "Plus Jakarta Sans", "Noto Sans JP", sans-serif';
+    ctx.fillText('YESS', c.width / 2, py + 140);
+  }
 
   ctx.fillStyle = 'rgb(70, 52, 40)';
   ctx.font = '800 40px "Noto Sans JP", sans-serif';
@@ -168,9 +174,16 @@ async function init() {
   }
 
   const loader = new THREE.TextureLoader();
-  const [carrotTex, tomatoTex] = await Promise.all([
+  const logoPromise = new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => resolve(null);
+    img.src = 'assets/yess-logo.png';
+  });
+  const [carrotTex, tomatoTex, logoImg] = await Promise.all([
     loader.loadAsync('assets/pouch-carrot.jpg'),
-    loader.loadAsync('assets/pouch-tomato.jpg')
+    loader.loadAsync('assets/pouch-tomato.jpg'),
+    logoPromise
   ]);
   const aniso = Math.min(8, renderer.capabilities.getMaxAnisotropy());
   [carrotTex, tomatoTex].forEach((t) => {
@@ -187,7 +200,7 @@ async function init() {
   function makePouch(flavor, frontTex, homeX, homeRot) {
     const group = new THREE.Group();
     const frontMat = new THREE.MeshStandardMaterial({ map: frontTex, roughness: 0.6, metalness: 0 });
-    const backMat = new THREE.MeshStandardMaterial({ map: makeBackTexture(FLAVOR_INFO[flavor]), roughness: 0.65, metalness: 0 });
+    const backMat = new THREE.MeshStandardMaterial({ map: makeBackTexture(FLAVOR_INFO[flavor], logoImg), roughness: 0.65, metalness: 0 });
     const front = new THREE.Mesh(geometry, frontMat);
     const back = new THREE.Mesh(geometry, backMat);
     back.rotation.y = Math.PI;
