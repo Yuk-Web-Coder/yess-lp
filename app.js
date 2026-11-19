@@ -67,13 +67,18 @@
         waitlist_lead: 'generate_lead',
         pouch_3d: 'pouch_3d_interact'
       };
-      window.gtag('event', gaEventMap[type] || type, {
+      const gaParams = {
         flavor: getSelectionCategory(),
         carrot_qty: state.carrotQty,
         tomato_qty: state.tomatoQty,
         total_bags: totalBags,
         ...payload
-      });
+      };
+      if (typeof payload.total === 'number') {
+        gaParams.value = payload.total;
+        gaParams.currency = 'JPY';
+      }
+      window.gtag('event', gaEventMap[type] || type, gaParams);
     }
 
     if (TRACKING_CONFIG.endpointUrl) {
