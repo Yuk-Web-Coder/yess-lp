@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>YESS | まだサラダ買ってるの？野菜由来の栄養を、普段の間食から。</title>
   <meta name="description" content="まだサラダ買ってるの？一袋でサラダ一杯相当の野菜を摂れる一口バータイプ食品 YESS。キャロット＆ビーツ味・トマト＆バジル味の2フレーバーで先行予約受付中。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -396,8 +397,13 @@
 
         <div>
           <label for="waitlistEmail" class="field-label">本品アナウンス・購入意思確認の受け取り用メールアドレス</label>
-          <input type="email" id="waitlistEmail" class="text-input" placeholder="name@example.com" required>
+          <input type="email" id="waitlistEmail" class="text-input" placeholder="name@example.com" maxlength="254" autocomplete="email" required>
           <p class="form-error" id="modalFormError" aria-live="polite"></p>
+        </div>
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="waitlistWebsite">Website</label>
+          <input type="text" id="waitlistWebsite" name="website" tabindex="-1" autocomplete="off">
         </div>
 
         <p class="privacy-note">

@@ -25,18 +25,27 @@
     'assort-2': { carrot: 1, tomato: 1 }
   };
 
+  const MIN_FILL_MS = 1200;
+
   const state = {
     carrotQty: 4,
     tomatoQty: 4,
     habit: '',
-    reason: ''
+    reason: '',
+    modalOpenedAt: 0
   };
+
+  function sanitizeParam(val, fallback) {
+    if (!val) return fallback;
+    const trimmed = String(val).trim().slice(0, 100);
+    return /^[=+\-@]/.test(trimmed) ? `'${trimmed}` : trimmed;
+  }
 
   function getParams() {
     const params = new URLSearchParams(window.location.search);
     return {
-      utm_source: params.get('utm_source') || 'direct',
-      utm_campaign: params.get('utm_campaign') || 'none'
+      utm_source: sanitizeParam(params.get('utm_source'), 'direct'),
+      utm_campaign: sanitizeParam(params.get('utm_campaign'), 'none')
     };
   }
 
@@ -186,6 +195,7 @@
   const closeModalBtn = document.getElementById('closeModalBtn');
   const waitlistForm = document.getElementById('waitlistForm');
   const waitlistEmail = document.getElementById('waitlistEmail');
+  const waitlistWebsite = document.getElementById('waitlistWebsite');
   const modalFormError = document.getElementById('modalFormError');
   const waitlistSubmitBtn = document.getElementById('waitlistSubmitBtn');
   const modalCompleteBox = document.getElementById('modalCompleteBox');
@@ -316,6 +326,7 @@
 
   // Modal open / close
   function openModal() {
+    state.modalOpenedAt = Date.now();
     interceptModal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
     waitlistEmail.focus();
@@ -402,11 +413,36 @@
   // Waitlist form submit
   waitlistForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // ボット対策1: ハニーポットに値が入っていたら外部送信せず静かに完了表示
+    if (waitlistWebsite && waitlistWebsite.value.trim() !== '') {
+      waitlistForm.style.display = 'none';
+      modalCompleteBox.classList.add('is-visible');
+      return;
+    }
+
+    // ボット対策2: モーダル表示直後の機械的即時送信をブロック
+    if (state.modalOpenedAt && Date.now() - state.modalOpenedAt < MIN_FILL_MS) {
+      modalFormError.textContent = '少し時間をおいてからもう一度送信してください。';
+      return;
+    }
+
     const email = waitlistEmail.value.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (!email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       modalFormError.textContent = '有効なメールアドレスを入力してください。';
       waitlistEmail.focus();
       return;
+    }
+
+    // ボット対策3: 同一セッション内での重複・連打送信をガード
+    try {
+      if (sessionStorage.getItem('yess_waitlist_submitted') === '1') {
+        waitlistForm.style.display = 'none';
+        modalCompleteBox.classList.add('is-visible');
+        return;
+      }
+    } catch (_) {
+      // Ignore storage errors
     }
 
     modalFormError.textContent = '';
@@ -439,9 +475,15 @@
         totalAmount: totals.total,
         habit,
         reason,
-        pageUrl: window.location.href,
+        pageUrl: window.location.href.slice(0, 300),
         ...getParams()
       });
+    }
+
+    try {
+      sessionStorage.setItem('yess_waitlist_submitted', '1');
+    } catch (_) {
+      // Ignore storage errors
     }
 
     waitlistForm.style.display = 'none';

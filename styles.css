@@ -1190,6 +1190,16 @@ button[aria-disabled="true"] {
   min-height: 1.2em;
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .privacy-note {
   font-size: var(--text-xs);
   color: var(--color-muted);
