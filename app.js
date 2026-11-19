@@ -3,7 +3,7 @@
 
   // 公開時にGoogle Apps Script / Formspree等のPOST先URLを設定すると自動送信されます
   const TRACKING_CONFIG = {
-    endpointUrl: 'https://script.google.com/macros/s/AKfycbzE7_hvgNOewr7lNoITkIGf0fDg261RQZ8IoaJgCseKEIBQi6QxBpBXhs26L5ZBUvf9IA/exec',
+    endpointUrl: 'https://script.google.com/macros/s/AKfycbwzevSdmXMUX7t391XQ-oiC_e5IjEYnBU2lhcO6d0rIwYfhol8wflAxb6XFjF6YckHHgw/exec',
     enableGtag: true
   };
 
