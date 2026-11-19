@@ -241,6 +241,11 @@
   const exportCsvBtn = document.getElementById('exportCsvBtn');
   const resetStatsBtn = document.getElementById('resetStatsBtn');
 
+  const privacyModal = document.getElementById('privacyModal');
+  const openPrivacyBtn = document.getElementById('openPrivacyBtn');
+  const openPrivacyFromModalBtn = document.getElementById('openPrivacyFromModalBtn');
+  const closePrivacyBtn = document.getElementById('closePrivacyBtn');
+
   function syncPresetHighlight() {
     document.querySelectorAll('[data-preset]').forEach((btn) => {
       const p = PRESETS[btn.dataset.preset];
@@ -387,8 +392,37 @@
     if (e.target === interceptModal) closeModal();
   });
 
+  function openPrivacyModal() {
+    if (!privacyModal) return;
+    privacyModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    if (closePrivacyBtn) closePrivacyBtn.focus();
+  }
+
+  function closePrivacyModal() {
+    if (!privacyModal) return;
+    privacyModal.classList.remove('is-open');
+    if (!interceptModal.classList.contains('is-open')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (openPrivacyBtn) openPrivacyBtn.addEventListener('click', openPrivacyModal);
+  if (openPrivacyFromModalBtn) openPrivacyFromModalBtn.addEventListener('click', openPrivacyModal);
+  if (closePrivacyBtn) closePrivacyBtn.addEventListener('click', closePrivacyModal);
+  if (privacyModal) {
+    privacyModal.addEventListener('click', (e) => {
+      if (e.target === privacyModal) closePrivacyModal();
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && interceptModal.classList.contains('is-open')) {
+    if (e.key !== 'Escape') return;
+    if (privacyModal && privacyModal.classList.contains('is-open')) {
+      closePrivacyModal();
+      return;
+    }
+    if (interceptModal.classList.contains('is-open')) {
       closeModal();
     }
   });

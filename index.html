@@ -401,7 +401,7 @@
         </div>
 
         <p class="privacy-note">
-          ※ ご入力いただいたメールアドレスは、YESSの本品ご案内および購入意思確認のみに使用し、第三者への提供や目的外利用は行いません。
+          ※ ご入力いただいたメールアドレスは、YESSの本品ご案内および購入意思確認のみに使用し、第三者への提供や目的外利用は行いません（<button type="button" class="inline-link-btn" id="openPrivacyFromModalBtn">プライバシーポリシー</button>）。
         </p>
 
         <button type="submit" id="waitlistSubmitBtn" class="btn-primary">本品アナウンスと購入意思確認を受け取る</button>
@@ -416,6 +416,57 @@
     </div>
   </div>
 
+  <!-- Privacy Policy Modal -->
+  <div class="modal-backdrop privacy-modal-backdrop" id="privacyModal" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+    <div class="modal-panel">
+      <button type="button" class="modal-close-btn" id="closePrivacyBtn" aria-label="閉じる">×</button>
+      <h2 class="modal-title" id="privacyModalTitle">プライバシーポリシー</h2>
+      <div class="privacy-policy-body">
+        <p>
+          YESS プロジェクト（学生開発チーム）（以下「当チーム」）は、本ページにおける仮購入テストおよび先行案内の受付に際し、お客様の個人情報を以下のとおり適切に取り扱います。
+        </p>
+        <div>
+          <h3>1. 取得する情報</h3>
+          <ul>
+            <li>ご登録いただいたメールアドレス</li>
+            <li>仮購入フォームでお選びいただいた内容（フレーバー・数量・普段の習慣・選択理由・流入元情報など）</li>
+          </ul>
+        </div>
+        <div>
+          <h3>2. 利用目的</h3>
+          <ul>
+            <li>YESS 製品の開発完了・発売時のご案内および正式なご購入意思確認のご連絡</li>
+            <li>働くデスクワーカー向け一口野菜スナックの市場受容性（PSM）検証、商品企画および価格改善のための統計分析</li>
+            <li>いただいたお問い合わせへの回答・対応</li>
+          </ul>
+        </div>
+        <div>
+          <h3>3. 第三者への提供</h3>
+          <p>
+            法令に基づく場合を除き、ご本人の同意なくお預かりした個人情報を第三者へ開示・提供することはありません。
+          </p>
+        </div>
+        <div>
+          <h3>4. 情報の管理と外部サービス</h3>
+          <p>
+            ご入力いただいた情報はアクセス制限を設けたクラウド環境（Googleスプレッドシート等）にて適切に管理します。また、本ページの利用状況把握のためブラウザのローカルストレージ等を利用します。
+          </p>
+        </div>
+        <div>
+          <h3>5. 開示・訂正・削除およびお問い合わせ窓口</h3>
+          <p>
+            ご登録いただいたメールアドレスの削除（配信停止）や内容の確認をご希望の場合は、下記窓口までご連絡ください。
+          </p>
+          <p>
+            運営主体：YESS プロジェクト（学生開発チーム）<br>
+            運営責任者：YESS プロジェクト準備室 製品開発責任者<br>
+            お問合せ窓口：<a href="mailto:yongdujiateng22@gmail.com">yongdujiateng22@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer + Reproducible Smoke Test Analytics Drawer -->
   <footer class="site-footer">
     <div class="container">
@@ -424,11 +475,33 @@
           <p class="footer-brand">YESS</p>
           <p>一袋でサラダ1杯相当の野菜を摂れる一口バー</p>
           <p>※ ページ内のパッケージおよび中身の画像はすべて開発中の商品イメージです。</p>
-          <p>運営：YESS開発プロジェクト｜お預かりしたメールアドレスは本品のご案内のみに使用し、第三者へ提供しません。</p>
+          <dl class="footer-operator">
+            <div>
+              <dt>運営主体：</dt>
+              <dd>YESS プロジェクト（学生開発チーム）</dd>
+            </div>
+            <div>
+              <dt>運営責任者：</dt>
+              <dd>YESS プロジェクト準備室 製品開発責任者</dd>
+            </div>
+            <div>
+              <dt>お問合せ窓口（メール）：</dt>
+              <dd><a href="mailto:yongdujiateng22@gmail.com">yongdujiateng22@gmail.com</a></dd>
+            </div>
+            <div>
+              <dt>事業内容：</dt>
+              <dd>働くデスクワーカー向け一口野菜スナック・未利用野菜アップサイクル食品の企画、試作開発、および市場受容性（PSM）の検証</dd>
+            </div>
+          </dl>
         </div>
-        <button type="button" class="analytics-toggle-btn" id="toggleAnalyticsBtn">
-          仮購入スモークテスト計測ログ（検証者用）
-        </button>
+        <div class="footer-actions">
+          <button type="button" class="analytics-toggle-btn" id="openPrivacyBtn">
+            プライバシーポリシー
+          </button>
+          <button type="button" class="analytics-toggle-btn" id="toggleAnalyticsBtn">
+            仮購入スモークテスト計測ログ（検証者用）
+          </button>
+        </div>
       </div>
 
       <div class="analytics-drawer" id="analyticsDrawer" aria-hidden="true">
