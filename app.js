@@ -494,7 +494,34 @@
     trackEvent('pouch_3d', { source: e.detail?.action || 'unknown' });
   });
 
+  function initScrollReveal() {
+    const targets = document.querySelectorAll('[data-reveal]');
+    if (!targets.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (typeof IntersectionObserver !== 'function') return;
+
+    document.documentElement.classList.add('js');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -6% 0px'
+      }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+  }
+
   // Init
   updateSummary();
+  initScrollReveal();
   trackEvent('view');
 })();

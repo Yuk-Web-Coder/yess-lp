@@ -101,21 +101,21 @@
 
     <!-- Section 2: Inside the pouch -->
     <section id="inside" class="inside">
-      <div class="container inside-head">
+      <div class="container inside-head" data-reveal>
         <h2 class="section-title inside-title">袋を開けると、一口サイズのバー。</h2>
         <p class="section-lead">
           フォークもドレッシングも不要。一般的な栄養バー（約30g前後）の約2倍にあたる60g・8粒入りなので、デスクで少しずつ食べてしっかり小腹を満たせます。
         </p>
       </div>
       <div class="inside-split">
-        <figure class="inside-figure">
+        <figure class="inside-figure" data-reveal="left">
           <img src="assets/bite-carrot.jpg" alt="木皿に盛られたキャロット＆ビーツ味の一口バー。横に生のビーツと人参" width="495" height="610" loading="lazy">
           <figcaption>
             <strong>キャロット＆ビーツ</strong>
             <span>人参の角切りが見える、しっとりした濃い色のバー</span>
           </figcaption>
         </figure>
-        <figure class="inside-figure">
+        <figure class="inside-figure" data-reveal="right" data-reveal-delay="1">
           <img src="assets/bite-tomato.jpg" alt="陶器の皿に盛られたトマト＆バジル味の一口バー。横にミニトマトとバジル" width="500" height="610" loading="lazy">
           <figcaption>
             <strong>トマト＆バジル</strong>
@@ -129,19 +129,19 @@
     <!-- Section 3: Why the usual options fail -->
     <section id="compare" class="dilemma">
       <div class="container">
-        <h2 class="section-title dilemma-title">野菜不足の対策、<br>どれも続かない理由がある。</h2>
+        <h2 class="section-title dilemma-title" data-reveal>野菜不足の対策、<br>どれも続かない理由がある。</h2>
         <ol class="dilemma-list">
-          <li class="dilemma-item">
+          <li class="dilemma-item" data-reveal>
             <span class="dilemma-num" aria-hidden="true">01</span>
             <h3 class="dilemma-name">パックサラダ</h3>
             <p>要冷蔵でかさばり、フォークとドレッシングを出すたびに作業が止まる。容器のゴミも毎回出る。</p>
           </li>
-          <li class="dilemma-item">
+          <li class="dilemma-item" data-reveal data-reveal-delay="1">
             <span class="dilemma-num" aria-hidden="true">02</span>
             <h3 class="dilemma-name">サプリメント</h3>
             <p>栄養は補えても、小腹は満たされない。水で流し込むだけで、食べた実感がない。</p>
           </li>
-          <li class="dilemma-item">
+          <li class="dilemma-item" data-reveal data-reveal-delay="2">
             <span class="dilemma-num" aria-hidden="true">03</span>
             <h3 class="dilemma-name">いつものお菓子</h3>
             <p>デスクでつまみやすいけれど、野菜は摂れない。食べ終わったあとに後ろめたさが残る。</p>
@@ -153,8 +153,8 @@
     <!-- Section 3b: Answer band (dark contrast) -->
     <section class="answer-band" aria-labelledby="answerTitle">
       <div class="container answer-grid">
-        <h2 class="answer-title" id="answerTitle">1袋で、<br>サラダ1杯相当。</h2>
-        <div class="answer-body">
+        <h2 class="answer-title" id="answerTitle" data-reveal>1袋で、<br>サラダ1杯相当。</h2>
+        <div class="answer-body" data-reveal data-reveal-delay="1">
           <p class="answer-lead">YESSは、お菓子の手軽さで野菜を摂るための一口バーです。</p>
           <ul class="answer-points">
             <li><strong>常温で常備できる</strong>引き出しや通勤バッグに数袋入れておけます。</li>
@@ -168,14 +168,14 @@
 
     <!-- Section 4: Flavors on a desk timeline -->
     <section id="flavors" class="flavors">
-      <div class="container flavors-head">
+      <div class="container flavors-head" data-reveal>
         <h2 class="section-title">15時の甘いものに。<br>19時半のしょっぱいものに。</h2>
         <p class="section-lead">
           デスクワークで間食が欲しくなる2つの時間帯に合わせて、甘い系と食事系を用意しました。
         </p>
       </div>
       <div class="flavor-split">
-        <article class="flavor-panel is-carrot">
+        <article class="flavor-panel is-carrot" data-reveal="left">
           <img class="flavor-pouch" src="assets/pouch-carrot.jpg" alt="YESS キャロット＆ビーツ味のパッケージ" width="284" height="643" loading="lazy">
           <div class="flavor-body">
             <h3 class="flavor-name">キャロット＆ビーツ味</h3>
@@ -192,7 +192,7 @@
           </div>
         </article>
 
-        <article class="flavor-panel is-tomato">
+        <article class="flavor-panel is-tomato" data-reveal="right" data-reveal-delay="1">
           <img class="flavor-pouch" src="assets/pouch-tomato.jpg" alt="YESS トマト＆バジル味のパッケージ" width="282" height="643" loading="lazy">
           <div class="flavor-body">
             <h3 class="flavor-name">トマト＆バジル味</h3>
@@ -215,7 +215,7 @@
     <!-- Section 5: Fake-Door Checkout Module -->
     <section id="checkout" class="checkout">
       <div class="container">
-        <div class="checkout-head">
+        <div class="checkout-head" data-reveal>
           <h2 class="section-title">仮購入（購入意向の登録）</h2>
           <p class="section-lead">
             1袋からの単品購入も、2種類の組み合わせも自由です。現在は開発中のため、このページでの決済・ご請求は一切行われません。
@@ -223,7 +223,7 @@
         </div>
 
         <div class="checkout-shell">
-          <div class="checkout-config">
+          <div class="checkout-config" data-reveal>
             <div class="step-block">
               <h3 class="step-heading">1. クイック選択（あとから個数を調整できます）</h3>
               <div class="preset-grid" aria-label="クイックセット選択">
@@ -286,7 +286,7 @@
             </div>
           </div>
 
-          <aside class="checkout-summary" aria-label="注文内容の確認">
+          <aside class="checkout-summary" aria-label="注文内容の確認" data-reveal data-reveal-delay="1">
             <h3 class="summary-title">ご注文内容</h3>
             <div class="summary-rows">
               <div class="summary-row">
@@ -333,25 +333,25 @@
     <!-- Section 6: FAQ -->
     <section id="faq" class="faq">
       <div class="container faq-grid">
-        <h2 class="section-title">買う前に、よく聞かれること。</h2>
+        <h2 class="section-title" data-reveal>買う前に、よく聞かれること。</h2>
         <div class="faq-list">
-          <details class="faq-item">
+          <details class="faq-item" data-reveal>
             <summary>一口バーはどれくらいの大きさ・量ですか？</summary>
             <p>1袋あたり60g（指でつまんで一口で食べられる角切りサイズが8粒入り）です。2〜3口で終わらず、デスクワークの合間に少しずつ食べ切れるボリュームを想定しています。</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal data-reveal-delay="1">
             <summary>「サラダ1杯相当」とはどういう意味ですか？</summary>
             <p>1袋に使う野菜の量（生の状態に換算）が、一般的なカップサラダ1食分と同程度になるよう配合を設計しています。具体的なグラム数は仕様確定時に表示します。</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal data-reveal-delay="2">
             <summary>PC作業中につまんでも手は汚れませんか？</summary>
             <p>表面に油分や粉が残りにくい焼き上げを目指して試作しています。ドレッシングのような汁気もありません。</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal data-reveal-delay="3">
             <summary>このページで決済されますか？いつ届きますか？</summary>
             <p>このページでは決済・お支払いは一切行われません。こちらは開発中の「仮購入」受付です。開発・製造が完了した段階で、ご登録いただいた方へ改めて本品のアナウンスと、正式なご購入意思の確認をお送りします。</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" data-reveal data-reveal-delay="4">
             <summary>アレルギー物質（特定原材料等）は何が含まれますか？</summary>
             <p>本品に含まれる予定のアレルギー物質（特定原材料等28品目対象）は<strong>「乳成分・卵・大豆」</strong>です。詳細な全原材料および栄養成分表示の確定内容は、製品化後の本品ご案内および販売ページにて明記いたします。</p>
           </details>
