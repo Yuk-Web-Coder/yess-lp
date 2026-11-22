@@ -33,6 +33,7 @@
     tomatoQty: 4,
     habit: '',
     reason: '',
+    occupation: '',
     modalOpenedAt: 0
   };
 
@@ -406,28 +407,23 @@
     }
   });
 
-  // Habit & Reason chips
-  document.querySelectorAll('[data-habit]').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const clicked = chip.dataset.habit;
-      const isAlready = state.habit === clicked;
-      state.habit = isAlready ? '' : clicked;
-      document.querySelectorAll('[data-habit]').forEach((c) => {
-        c.classList.toggle('is-active', c.dataset.habit === state.habit);
+  // Habit, Reason & Occupation chips
+  function bindChipGroup(attrName, stateKey) {
+    const selector = `[data-${attrName}]`;
+    document.querySelectorAll(selector).forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const clicked = chip.dataset[attrName];
+        state[stateKey] = state[stateKey] === clicked ? '' : clicked;
+        document.querySelectorAll(selector).forEach((c) => {
+          c.classList.toggle('is-active', c.dataset[attrName] === state[stateKey]);
+        });
       });
     });
-  });
+  }
 
-  document.querySelectorAll('[data-reason]').forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const clicked = chip.dataset.reason;
-      const isAlready = state.reason === clicked;
-      state.reason = isAlready ? '' : clicked;
-      document.querySelectorAll('[data-reason]').forEach((c) => {
-        c.classList.toggle('is-active', c.dataset.reason === state.reason);
-      });
-    });
-  });
+  bindChipGroup('habit', 'habit');
+  bindChipGroup('reason', 'reason');
+  bindChipGroup('occupation', 'occupation');
 
   // Waitlist form submit
   waitlistForm.addEventListener('submit', async (e) => {
@@ -473,11 +469,13 @@
     const totals = calcTotals();
     const habit = state.habit || '未回答';
     const reason = state.reason || '未回答';
+    const occupation = state.occupation || '未回答';
 
     // ローカルログには個人情報を残さず統計のみ記録
     trackEvent('waitlist_lead', {
       habit,
       reason,
+      occupation,
       total: totals.total
     });
 
@@ -494,6 +492,7 @@
         totalAmount: totals.total,
         habit,
         reason,
+        occupation,
         pageUrl: window.location.href.slice(0, 300),
         ...getParams()
       });
