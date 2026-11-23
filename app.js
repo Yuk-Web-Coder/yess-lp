@@ -29,8 +29,8 @@
   const MIN_FILL_MS = 1200;
 
   const state = {
-    carrotQty: 4,
-    tomatoQty: 4,
+    carrotQty: 1,
+    tomatoQty: 0,
     habit: '',
     reason: '',
     occupation: '',

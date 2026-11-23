@@ -238,7 +238,7 @@
             <div class="step-block">
               <h3 class="step-heading">1. クイック選択（あとから個数を調整できます）</h3>
               <div class="preset-grid" aria-label="クイックセット選択">
-                <button type="button" class="preset-btn is-active" data-preset="assort-8">アソート 8袋（5%オフ・送料無料）</button>
+                <button type="button" class="preset-btn" data-preset="assort-8">アソート 8袋（5%オフ・送料無料）</button>
                 <button type="button" class="preset-btn" data-preset="assort-16">アソート 16袋（10%オフ・送料無料）</button>
                 <button type="button" class="preset-btn" data-preset="assort-4">お試し 4袋（送料 ¥300）</button>
                 <button type="button" class="preset-btn" data-preset="assort-2">2袋食べ比べ（送料 ¥300）</button>
@@ -260,15 +260,15 @@
                   <div class="qty-controls">
                     <div class="qty-stepper">
                       <button type="button" class="qty-btn" id="carrotMinusBtn" aria-label="キャロット＆ビーツ味の個数を減らす">−</button>
-                      <input type="number" id="carrotQtyInput" class="qty-input" value="4" min="0" max="99" aria-label="キャロット＆ビーツ味の個数">
+                      <input type="number" id="carrotQtyInput" class="qty-input" value="1" min="0" max="99" aria-label="キャロット＆ビーツ味の個数">
                       <button type="button" class="qty-btn" id="carrotPlusBtn" aria-label="キャロット＆ビーツ味の個数を増やす">＋</button>
                     </div>
                     <span class="qty-unit">袋</span>
-                    <span class="qty-subtotal" id="carrotSubtotal">¥1,280</span>
+                    <span class="qty-subtotal" id="carrotSubtotal">¥320</span>
                   </div>
                 </div>
 
-                <div class="qty-row has-qty" id="tomatoCard">
+                <div class="qty-row" id="tomatoCard">
                   <img class="qty-thumb" src="assets/pouch-tomato.jpg" alt="" width="282" height="643" loading="lazy">
                   <div class="qty-info">
                     <div class="sku-title-row">
@@ -280,16 +280,16 @@
                   <div class="qty-controls">
                     <div class="qty-stepper">
                       <button type="button" class="qty-btn" id="tomatoMinusBtn" aria-label="トマト＆バジル味の個数を減らす">−</button>
-                      <input type="number" id="tomatoQtyInput" class="qty-input" value="4" min="0" max="99" aria-label="トマト＆バジル味の個数">
+                      <input type="number" id="tomatoQtyInput" class="qty-input" value="0" min="0" max="99" aria-label="トマト＆バジル味の個数">
                       <button type="button" class="qty-btn" id="tomatoPlusBtn" aria-label="トマト＆バジル味の個数を増やす">＋</button>
                     </div>
                     <span class="qty-unit">袋</span>
-                    <span class="qty-subtotal" id="tomatoSubtotal">¥1,280</span>
+                    <span class="qty-subtotal" id="tomatoSubtotal">¥0</span>
                   </div>
                 </div>
               </div>
               <p class="benefit-note" id="benefitNote">
-                合計8袋以上のため「5%オフ ＋ 送料無料」が適用されています（あと8袋追加で10%オフ）。
+                あと7袋追加すると「5%オフ ＋ 送料無料」が適用されます（現在送料 ¥300）。
               </p>
               <p class="allergen-note">
                 ※ アレルギー物質（特定原材料等28品目・予定）：乳成分・卵・大豆
@@ -302,29 +302,29 @@
             <div class="summary-rows">
               <div class="summary-row">
                 <span class="summary-row-key">キャロット＆ビーツ味（¥320）</span>
-                <span class="summary-row-val" id="summaryCarrot">4袋（¥1,280）</span>
+                <span class="summary-row-val" id="summaryCarrot">1袋（¥320）</span>
               </div>
               <div class="summary-row">
                 <span class="summary-row-key">トマト＆バジル味（¥320）</span>
-                <span class="summary-row-val" id="summaryTomato">4袋（¥1,280）</span>
+                <span class="summary-row-val" id="summaryTomato">0袋（¥0）</span>
               </div>
               <div class="summary-row">
                 <span class="summary-row-key">合計数量</span>
-                <span class="summary-row-val" id="summaryQty">8袋</span>
+                <span class="summary-row-val" id="summaryQty">1袋</span>
               </div>
-              <div class="summary-row summary-discount-row" id="summaryDiscountRow">
+              <div class="summary-row summary-discount-row" id="summaryDiscountRow" hidden>
                 <span class="summary-row-key" id="summaryDiscountLabel">8袋以上 まとめ買い5%オフ</span>
                 <span class="summary-row-val" id="summaryDiscount">-¥128</span>
               </div>
               <div class="summary-row">
                 <span class="summary-row-key">送料（8袋以上で無料）</span>
-                <span class="summary-row-val" id="summaryShipping">無料</span>
+                <span class="summary-row-val" id="summaryShipping">¥300</span>
               </div>
             </div>
 
             <div class="summary-total-row">
               <span class="summary-total-label">合計目安（税込）</span>
-              <span class="summary-total-price" id="summaryTotal">¥2,432</span>
+              <span class="summary-total-price" id="summaryTotal">¥620</span>
             </div>
 
             <div class="no-payment-notice">
@@ -383,7 +383,7 @@
 
       <div class="modal-chosen-box">
         <span class="modal-chosen-label">ご選択中の内容</span>
-        <strong id="modalChosenSummary">キャロット＆ビーツ味 4袋 ＋ トマト＆バジル味 4袋（計8袋 / 合計 ¥2,432）</strong>
+        <strong id="modalChosenSummary">キャロット＆ビーツ味 1袋（計1袋 / 合計 ¥620）</strong>
       </div>
 
       <form class="modal-form" id="waitlistForm" novalidate>
