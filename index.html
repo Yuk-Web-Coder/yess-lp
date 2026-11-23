@@ -241,7 +241,7 @@
                 <button type="button" class="preset-btn" data-preset="assort-8">アソート 8袋（5%オフ・送料無料）</button>
                 <button type="button" class="preset-btn" data-preset="assort-16">アソート 16袋（10%オフ・送料無料）</button>
                 <button type="button" class="preset-btn" data-preset="assort-4">お試し 4袋（送料 ¥300）</button>
-                <button type="button" class="preset-btn" data-preset="assort-2">2袋食べ比べ（送料 ¥300）</button>
+                <button type="button" class="preset-btn is-active" data-preset="assort-2">2袋食べ比べ（送料 ¥300）</button>
               </div>
             </div>
 
@@ -268,7 +268,7 @@
                   </div>
                 </div>
 
-                <div class="qty-row" id="tomatoCard">
+                <div class="qty-row has-qty" id="tomatoCard">
                   <img class="qty-thumb" src="assets/pouch-tomato.jpg" alt="" width="282" height="643" loading="lazy">
                   <div class="qty-info">
                     <div class="sku-title-row">
@@ -280,16 +280,16 @@
                   <div class="qty-controls">
                     <div class="qty-stepper">
                       <button type="button" class="qty-btn" id="tomatoMinusBtn" aria-label="トマト＆バジル味の個数を減らす">−</button>
-                      <input type="number" id="tomatoQtyInput" class="qty-input" value="0" min="0" max="99" aria-label="トマト＆バジル味の個数">
+                      <input type="number" id="tomatoQtyInput" class="qty-input" value="1" min="0" max="99" aria-label="トマト＆バジル味の個数">
                       <button type="button" class="qty-btn" id="tomatoPlusBtn" aria-label="トマト＆バジル味の個数を増やす">＋</button>
                     </div>
                     <span class="qty-unit">袋</span>
-                    <span class="qty-subtotal" id="tomatoSubtotal">¥0</span>
+                    <span class="qty-subtotal" id="tomatoSubtotal">¥320</span>
                   </div>
                 </div>
               </div>
               <p class="benefit-note" id="benefitNote">
-                あと7袋追加すると「5%オフ ＋ 送料無料」が適用されます（現在送料 ¥300）。
+                あと6袋追加すると「5%オフ ＋ 送料無料」が適用されます（現在送料 ¥300）。
               </p>
               <p class="allergen-note">
                 ※ アレルギー物質（特定原材料等28品目・予定）：乳成分・卵・大豆
@@ -306,11 +306,11 @@
               </div>
               <div class="summary-row">
                 <span class="summary-row-key">トマト＆バジル味（¥320）</span>
-                <span class="summary-row-val" id="summaryTomato">0袋（¥0）</span>
+                <span class="summary-row-val" id="summaryTomato">1袋（¥320）</span>
               </div>
               <div class="summary-row">
                 <span class="summary-row-key">合計数量</span>
-                <span class="summary-row-val" id="summaryQty">1袋</span>
+                <span class="summary-row-val" id="summaryQty">2袋</span>
               </div>
               <div class="summary-row summary-discount-row" id="summaryDiscountRow" hidden>
                 <span class="summary-row-key" id="summaryDiscountLabel">8袋以上 まとめ買い5%オフ</span>
@@ -324,7 +324,7 @@
 
             <div class="summary-total-row">
               <span class="summary-total-label">合計目安（税込）</span>
-              <span class="summary-total-price" id="summaryTotal">¥620</span>
+              <span class="summary-total-price" id="summaryTotal">¥940</span>
             </div>
 
             <div class="no-payment-notice">
@@ -383,7 +383,7 @@
 
       <div class="modal-chosen-box">
         <span class="modal-chosen-label">ご選択中の内容</span>
-        <strong id="modalChosenSummary">キャロット＆ビーツ味 1袋（計1袋 / 合計 ¥620）</strong>
+        <strong id="modalChosenSummary">キャロット＆ビーツ味 1袋 ＋ トマト＆バジル味 1袋（計2袋 / 合計 ¥940）</strong>
       </div>
 
       <form class="modal-form" id="waitlistForm" novalidate>

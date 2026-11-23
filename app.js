@@ -30,7 +30,7 @@
 
   const state = {
     carrotQty: 1,
-    tomatoQty: 0,
+    tomatoQty: 1,
     habit: '',
     reason: '',
     occupation: '',
